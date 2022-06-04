@@ -7,6 +7,7 @@ module JurnalApi
     include JurnalApi::Client::BankTransfer
     include JurnalApi::Client::Customers
     include JurnalApi::Client::JournalEntries
+    include JurnalApi::Client::PaymentMethods
     include JurnalApi::Client::Products
     include JurnalApi::Client::RecurringSchedules
     include JurnalApi::Client::ReceivePayment
@@ -14,5 +15,6 @@ module JurnalApi
     include JurnalApi::Client::SalesOrders
     include JurnalApi::Client::SalesInvoices
     include JurnalApi::Client::HealthChecks
+    include JurnalApi::Client::Vendor
   end
 end
