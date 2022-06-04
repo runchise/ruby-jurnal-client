@@ -1,7 +1,7 @@
 module JurnalApi
   class Client
     # Defines methods related to ReceivePayment
-    module Account
+    module Accounts
       def accounts(params = {})
         response = get('accounts', params)
         response
