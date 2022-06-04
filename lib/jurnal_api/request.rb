@@ -33,9 +33,9 @@ module JurnalApi
 
         case method
         when :get, :delete
-          request.url(URI.escape(path), options)
+          request.url(CGI.escape(path), options)
         when :post, :put
-          request.path = URI.escape(path)
+          request.path = CGI.escape(path)
           request.headers['Content-Type'] = 'application/json'
           request.body = options unless options.empty?
         end

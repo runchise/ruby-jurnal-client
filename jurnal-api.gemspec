@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["mekari-devs"]
   spec.email         = ["developer@mekari.com"]
 
-  spec.summary       = %q{Ruby wrapper for the Jurnal API. This version is not official version}
+  spec.summary       = %q{Ruby wrapper for the Jurnal API.}
   # spec.description   = %q{TODO: Write a longer description or delete this line.}
   spec.homepage      = "https://github.com/mekari-engineering/jurnal_api"
 
@@ -25,6 +25,17 @@ Gem::Specification.new do |spec|
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
+
+  spec.add_development_dependency "bundler",          "~> 2.0"
+  spec.add_development_dependency "byebug",           "11.1.3"
+  spec.add_development_dependency "capybara",         "2.5.0"
+  spec.add_development_dependency "pry"  
+  spec.add_development_dependency "rack",             "2.2.3"
+  spec.add_development_dependency "rake",             "~> 13.0"
+  spec.add_development_dependency "rspec",            "~> 3.0"
+  spec.add_development_dependency "shoulda-context",  "1.2.2"
+  spec.add_development_dependency "shoulda-matchers", "3.1.1"
+  spec.add_development_dependency "webmock",          "3.8.3"
 
   # dependency
   spec.add_dependency "faraday",                      "~> 1.0"
