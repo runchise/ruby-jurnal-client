@@ -13,6 +13,11 @@ module JurnalApi
         response
       end
 
+      def product_update(params = {})
+        response = put("products/#{id}", params)
+        response
+      end
+
       def product_find(id)
         response = get("products/#{id}")
         response
