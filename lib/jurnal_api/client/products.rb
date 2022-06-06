@@ -8,6 +8,11 @@ module JurnalApi
         response
       end
 
+      def product(params = {})
+        response = post('products', params)
+        response
+      end
+      
       def product_find(id)
         response = get("products/#{id}")
         response
