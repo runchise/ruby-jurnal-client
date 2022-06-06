@@ -7,6 +7,11 @@ module JurnalApi
         response
       end
 
+      def payment_method_create(params = {})
+        response = post('payment_methods', params)
+        response
+      end
+
       def payment_method_find(id)
         response = get("payment_methods/#{id}")
         response

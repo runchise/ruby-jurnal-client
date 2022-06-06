@@ -15,6 +15,7 @@ module JurnalApi
     include JurnalApi::Client::SalesOrders
     include JurnalApi::Client::SalesInvoices
     include JurnalApi::Client::HealthChecks
+    include JurnalApi::Client::Tags
     include JurnalApi::Client::Vendors
   end
 end
