@@ -13,8 +13,6 @@ module FaradayMiddleware
           raise JurnalApi::NotFound, error_message_400(response)
         when 409
           raise JurnalApi::Conflict.new error_message_400(response), response[:body]
-        when 422
-          raise JurnalApi::UnprocessableEntity.new error_message_400(response), response[:body]
         when 429
           raise JurnalApi::TooManyRequests, error_message_400(response)
         when 500
