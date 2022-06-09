@@ -9,6 +9,8 @@ module JurnalApi
     include JurnalApi::Client::JournalEntries
     include JurnalApi::Client::PaymentMethods
     include JurnalApi::Client::Products
+    include JurnalApi::Client::PurchaseInvoices
+    include JurnalApi::Client::PurchaseOrders
     include JurnalApi::Client::RecurringSchedules
     include JurnalApi::Client::ReceivePayment
     include JurnalApi::Client::SalesOrderPayments
