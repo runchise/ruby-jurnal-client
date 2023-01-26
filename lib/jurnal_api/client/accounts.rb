@@ -6,6 +6,11 @@ module JurnalApi
         response = get('accounts', params)
         response
       end
+      
+      def account_create(params = {})
+        response = post('accounts', params)
+        response        
+      end
 
       def account_find(id)
         response = get("accounts/#{id}")
