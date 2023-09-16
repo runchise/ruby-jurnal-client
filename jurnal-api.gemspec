@@ -41,4 +41,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency "faraday",                      "~> 1.0"
   spec.add_dependency "faraday_middleware",           "~> 1.0"
   spec.add_dependency "dotenv",                       "2.7.6"
+  spec.add_dependency "addressable",                  "~> 2.7"
 end
