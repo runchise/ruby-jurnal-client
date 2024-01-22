@@ -10,12 +10,14 @@ module JurnalApi
     include JurnalApi::Client::PaymentMethods
     include JurnalApi::Client::Products
     include JurnalApi::Client::PurchaseInvoices
+    include JurnalApi::Client::PurchaseReturn
     include JurnalApi::Client::PurchaseOrders
     include JurnalApi::Client::RecurringSchedules
     include JurnalApi::Client::ReceivePayment
     include JurnalApi::Client::SalesOrderPayments
     include JurnalApi::Client::SalesOrders
     include JurnalApi::Client::SalesInvoices
+    include JurnalApi::Client::SalesReturn
     include JurnalApi::Client::HealthChecks
     include JurnalApi::Client::Tags
     include JurnalApi::Client::Vendors
