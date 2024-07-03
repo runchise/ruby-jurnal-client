@@ -24,6 +24,11 @@ module JurnalApi
         response
       end
       
+      def purchase_order_delete(id)
+        response = delete("purchase_orders/#{id}")
+        response
+      end
+
       def purchase_order_convert_to_invoice(id, params = {})
         url      = "purchase_orders/#{id}/convert_to_invoice"
         response = post(url, params)
