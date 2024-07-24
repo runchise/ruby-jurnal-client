@@ -35,7 +35,9 @@ module JurnalApi
         when 'partner/core'
           connection.headers['Authorization'] = "Bearer #{access_token}"
         when 'core'
-          connection.headers['apikey'] = "#{access_token}"
+          if access_token.present?
+            connection.headers['apikey'] = "#{access_token}"
+          end
         end        
       end
     end

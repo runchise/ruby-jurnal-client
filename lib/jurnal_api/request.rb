@@ -30,7 +30,7 @@ module JurnalApi
     def request(method, path, options, raw=false, unformatted=false, no_response_wrapper=false)
       response = connection(raw).send(method) do |request|
         path = formatted_path(path) unless unformatted
-
+        set_signature(request, method, path)
         case method
         when :get, :delete
           request.url(path, options)
@@ -45,6 +45,18 @@ module JurnalApi
       return response.body if no_response_wrapper
       return Response.create( response.body, {:limit => response.headers['x-ratelimit-limit'].to_i,
                                               :remaining => response.headers['x-ratelimit-remaining'].to_i} )
+    end
+
+    def set_signature(request, method, path)
+      hmac_username = client_id;
+      hmac_secret = client_secret;
+      request_line = "#{method} #{path} HTTP/1.1";
+      digest = OpenSSL::Digest.new('sha256')
+      time = Time.now.utc
+      signature = Base64.strict_encode64(OpenSSL::HMAC.digest(digest, hmac_secret, ['date: ', time, request_line].join("\n")))
+      hmac_header = "hmac username=#{hmac_username}\", algorithm=\"hmac-sha256\", headers=\"date request-line\", signature=\"#{signature}\""
+      request.headers['Authorization'] = hmac_header
+      request.headers['Date'] = time
     end
 
     def formatted_path(path)

@@ -7,6 +7,8 @@ module JurnalApi
     # An array of valid keys in the options hash when configuring a {JurnalApi::API}
     VALID_OPTIONS_KEYS = [
       :access_token,
+      :client_id,
+      :client_secret,
       :adapter,
       :api_version,
       :base_url,
