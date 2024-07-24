@@ -52,15 +52,16 @@ module JurnalApi
 
       hmac_username = client_id;
       hmac_secret = client_secret;
-      request_line = "#{method} #{path} HTTP/1.1";
-      digest = OpenSSL::Digest.new('sha256')
-      time = Time.now.utc.to_s
+      request_line = "#{method.upcase} '/v2/jurnal/'#{path} HTTP/1.1";
+      datetime = Time.now.httpdate
+      payload = [datetime, request_line].join("\n")
+      digest = OpenSSL::HMAC.digest(OpenSSL::Digest.new('sha256'), hmac_secret, payload)
+      signature = Base64.strict_encode64(digest)
+
       signature = Base64.strict_encode64(OpenSSL::HMAC.digest(digest, hmac_secret, ['date: ', time, request_line].join("\n")))
-      puts method
-      puts path
-      hmac_header = "hmac username='#{hmac_username}', algorithm='hmac-sha256', headers='date request-line', signature='#{signature}'"
+      hmac_header = "hmac username=\"#{hmac_username}\", algorithm=\"hmac-sha256\", headers=\"date request-line\", signature=\"#{signature}\""
       request.headers['Authorization'] = hmac_header
-      request.headers['Date'] = time
+      request.headers['Date'] = datetime
     end
 
     def formatted_path(path)

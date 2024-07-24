@@ -25,7 +25,11 @@ module JurnalApi
     end
 
     def endpoint
-      base_url + '/' + authorization_path + '/' + api_version
+      if access_token.preseent?
+        base_url + '/' + authorization_path + '/' + api_version
+      else
+        base_url + '/v2/jurnal/' + + api_version
+      end
     end
 
     include Connection
