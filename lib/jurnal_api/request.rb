@@ -57,8 +57,6 @@ module JurnalApi
       payload = [datetime, request_line].join("\n")
       digest = OpenSSL::HMAC.digest(OpenSSL::Digest.new('sha256'), hmac_secret, payload)
       signature = Base64.strict_encode64(digest)
-
-      signature = Base64.strict_encode64(OpenSSL::HMAC.digest(digest, hmac_secret, ['date: ', datetime, request_line].join("\n")))
       hmac_header = "hmac username=\"#{hmac_username}\", algorithm=\"hmac-sha256\", headers=\"date request-line\", signature=\"#{signature}\""
       request.headers['Authorization'] = hmac_header
       request.headers['Date'] = datetime
