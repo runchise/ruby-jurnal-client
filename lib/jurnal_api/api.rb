@@ -28,7 +28,7 @@ module JurnalApi
       if access_token.present?
         base_url + '/' + authorization_path + '/' + api_version
       else
-        base_url + '/v2/jurnal/' + + api_version
+        base_url + '/public/jurnal/' + + api_version
       end
     end
 

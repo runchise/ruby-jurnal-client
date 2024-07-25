@@ -52,7 +52,7 @@ module JurnalApi
 
       hmac_username = client_id;
       hmac_secret = client_secret;
-      request_line = "#{method.upcase} '/v2/jurnal/'#{path} HTTP/1.1";
+      request_line = "#{method.upcase} '/public/jurnal/'#{path} HTTP/1.1";
       datetime = Time.now.httpdate
       payload = [datetime, request_line].join("\n")
       digest = OpenSSL::HMAC.digest(OpenSSL::Digest.new('sha256'), hmac_secret, payload)
