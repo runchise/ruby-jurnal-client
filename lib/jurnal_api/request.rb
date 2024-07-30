@@ -34,10 +34,11 @@ module JurnalApi
         case method
         when :get, :delete
           request.url(path, options)
+          query_path = "#{request.path}?#{options.to_query}"
           puts '=========================='
-          puts "#{request.path}#{request.params}"
+          puts query_path
           puts '=========================='
-          set_signature(request, method, request.path)
+          set_signature(request, method, query_path)
         when :post, :put
           request.path = path
           request.headers['Content-Type'] = 'application/json'
