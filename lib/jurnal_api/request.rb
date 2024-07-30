@@ -29,7 +29,7 @@ module JurnalApi
     # Perform an HTTP request
     def request(method, path, options, raw=false, unformatted=false, no_response_wrapper=false)
       response = connection(raw).send(method) do |request|
-        path = formatted_path(path) if access_token.present? && !unformatted
+        path = formatted_path(path) if !access_token.nil? && !unformatted
         
         case method
         when :get, :delete
@@ -50,10 +50,13 @@ module JurnalApi
     end
 
     def set_signature(request, method, path)
-      return if access_token.present?
+      return if !access_token.nil?
       hmac_username = client_id
       hmac_secret = client_secret
       datetime = Time.now.httpdate
+      puts '=========================='
+      puts request.path
+      puts '=========================='
       request_line = "#{method.upcase} /public/jurnal/#{path} HTTP/1.1"
       payload = "date: #{datetime}\n#{request_line}"
       digest = OpenSSL::HMAC.digest(OpenSSL::Digest.new('sha256'), hmac_secret, payload)

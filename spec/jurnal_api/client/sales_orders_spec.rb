@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 RSpec.describe JurnalApi::Client::SalesOrders do
-  let(:client)          { JurnalApi::Client.new }
+  let(:client)          { JurnalApi::Client.new({access_token: 'test-token'}) }
   let(:module_endpoint) { 'https://sandbox-api.jurnal.id' + '/core/api/v1' + '/sales_orders' }
 
   describe '#create' do

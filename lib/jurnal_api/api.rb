@@ -25,7 +25,7 @@ module JurnalApi
     end
 
     def endpoint
-      if access_token.present?
+      if !access_token.nil?
         base_url + '/' + authorization_path + '/' + api_version
       else
         base_url + '/public/jurnal/' + + api_version
