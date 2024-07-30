@@ -35,7 +35,7 @@ module JurnalApi
         when :get, :delete
           request.url(path, options)
           puts '=========================='
-          puts request.path + request.params
+          puts "#{request.path}#{request.params}"
           puts '=========================='
           set_signature(request, method, request.path)
         when :post, :put

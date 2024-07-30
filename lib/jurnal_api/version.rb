@@ -1,3 +1,3 @@
 module JurnalApi
-  VERSION = '1.0.11'.freeze unless defined?(::JurnalApi::VERSION)
+  VERSION = '1.0.12'.freeze unless defined?(::JurnalApi::VERSION)
 end
