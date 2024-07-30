@@ -34,6 +34,9 @@ module JurnalApi
         case method
         when :get, :delete
           request.url(path, options)
+          puts '=========================='
+          puts request.path + request.params
+          puts '=========================='
           set_signature(request, method, request.path)
         when :post, :put
           request.path = path
@@ -54,10 +57,7 @@ module JurnalApi
       hmac_username = client_id
       hmac_secret = client_secret
       datetime = Time.now.httpdate
-      puts '=========================='
-      puts request.path
-      puts '=========================='
-      request_line = "#{method.upcase} /public/jurnal/#{path} HTTP/1.1"
+      request_line = "#{method.upcase} /public/jurnal/#{api_version}/#{path} HTTP/1.1"
       payload = "date: #{datetime}\n#{request_line}"
       digest = OpenSSL::HMAC.digest(OpenSSL::Digest.new('sha256'), hmac_secret, payload)
       signature = Base64.strict_encode64(digest)
