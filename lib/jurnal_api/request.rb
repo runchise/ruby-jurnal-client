@@ -34,7 +34,11 @@ module JurnalApi
         case method
         when :get, :delete
           request.url(path, options)
-          query_path = "#{request.path}?#{options.to_query}"
+          if options.present?
+            query_path = "#{request.path}?#{options.to_query}"
+          else
+            query_path = request.path
+          end
           puts '=========================='
           puts query_path
           puts '=========================='
