@@ -39,9 +39,6 @@ module JurnalApi
           else
             query_path = request.path
           end
-          puts '=========================='
-          puts query_path
-          puts '=========================='
           set_signature(request, method, query_path)
         when :post, :put
           request.path = path
