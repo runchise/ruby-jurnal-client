@@ -29,15 +29,17 @@ module JurnalApi
     # Perform an HTTP request
     def request(method, path, options, raw=false, unformatted=false, no_response_wrapper=false)
       response = connection(raw).send(method) do |request|
-        path = formatted_path(path) unless unformatted
-        set_signature(request, method, path)
+        path = formatted_path(path) if access_token.present? && !unformatted
+        
         case method
         when :get, :delete
           request.url(path, options)
+          set_signature(request, method, request.fullpath)
         when :post, :put
           request.path = path
           request.headers['Content-Type'] = 'application/json'
           request.body = options unless options.empty?
+          set_signature(request, method, path)
         end
       end
 
@@ -49,14 +51,14 @@ module JurnalApi
 
     def set_signature(request, method, path)
       return if access_token.present?
-
-      hmac_username = client_id;
-      hmac_secret = client_secret;
-      request_line = "#{method.upcase} '/public/jurnal/'#{path} HTTP/1.1";
+      hmac_username = client_id
+      hmac_secret = client_secret
       datetime = Time.now.httpdate
-      payload = [datetime, request_line].join("\n")
+      request_line = "#{method.upcase} /public/jurnal/#{path} HTTP/1.1"
+      payload = "date: #{datetime}\n#{request_line}"
       digest = OpenSSL::HMAC.digest(OpenSSL::Digest.new('sha256'), hmac_secret, payload)
       signature = Base64.strict_encode64(digest)
+
       hmac_header = "hmac username=\"#{hmac_username}\", algorithm=\"hmac-sha256\", headers=\"date request-line\", signature=\"#{signature}\""
       request.headers['Authorization'] = hmac_header
       request.headers['Date'] = datetime
