@@ -36,6 +36,13 @@ module JurnalApi
         response
       end
 
+      def purchase_order_convert_to_delivery(id, params = {})
+        url      = "purchase_orders/#{id}/convert_to_delivery"
+        response = post(url, params)
+
+        response
+      end
+
       def purchase_order_close(id)
         url      = "purchase_orders/#{id}/close_order"
         response = post(url)
