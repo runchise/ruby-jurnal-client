@@ -19,7 +19,7 @@ module JurnalApi
       end
 
       def bank_transfer_update(id, params = {})
-        response = put("bank_transfers/#{id}", params)
+        response = patch("bank_transfers/#{id}", params)
         response
       end
 

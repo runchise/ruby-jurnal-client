@@ -15,8 +15,8 @@ module JurnalApi
     end
 
     # Perform an HTTP PUT request
-    def put(path, options={},  raw=false, unformatted=false, no_response_wrapper=no_response_wrapper())
-      request(:put, path, options, raw, unformatted, no_response_wrapper)
+    def patch(path, options={},  raw=false, unformatted=false, no_response_wrapper=no_response_wrapper())
+      request(:patch, path, options, raw, unformatted, no_response_wrapper)
     end
 
     # Perform an HTTP DELETE request
@@ -40,7 +40,7 @@ module JurnalApi
             query_path = request.path
           end
           set_signature(request, method, query_path)
-        when :post, :put
+        when :post, :patch
           request.path = path
           request.headers['Content-Type'] = 'application/json'
           request.body = options unless options.empty?

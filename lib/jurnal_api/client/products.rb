@@ -14,7 +14,7 @@ module JurnalApi
       end
 
       def product_update(params = {})
-        response = put("products/#{id}", params)
+        response = patch("products/#{id}", params)
         response
       end
 

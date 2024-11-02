@@ -20,7 +20,7 @@ module JurnalApi
       end
 
       def purchase_delivery_update(id, params = {})
-        response = put("purchase_deliveries/#{id}", params)
+        response = patch("purchase_deliveries/#{id}", params)
         response
       end
       

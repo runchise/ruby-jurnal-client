@@ -21,7 +21,7 @@ module JurnalApi
       end
 
       def purchase_invoice_update(id, params = {})
-        response = put("purchase_invoices/#{id}", params)
+        response = patch("purchase_invoices/#{id}", params)
         response
       end
 
