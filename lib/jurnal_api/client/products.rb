@@ -22,6 +22,11 @@ module JurnalApi
         response = get("products/#{id}")
         response
       end
+
+      def product_unit_conversions(id)
+        response = get("products/#{id}/unit_conversions")
+        response
+      end
     end
   end
 end
