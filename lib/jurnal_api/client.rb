@@ -20,6 +20,7 @@ module JurnalApi
     include JurnalApi::Client::SalesDeliveries
     include JurnalApi::Client::SalesInvoices
     include JurnalApi::Client::SalesReturn
+    include JurnalApi::Client::UnitConversions
     include JurnalApi::Client::HealthChecks
     include JurnalApi::Client::Tags
     include JurnalApi::Client::Vendors
