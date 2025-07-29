@@ -23,6 +23,7 @@ module JurnalApi
     include JurnalApi::Client::UnitConversions
     include JurnalApi::Client::HealthChecks
     include JurnalApi::Client::ProductUnits
+    include JurnalApi::Client::PurchaseOrderPayments
     include JurnalApi::Client::Tags
     include JurnalApi::Client::Vendors
   end
