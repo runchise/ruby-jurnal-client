@@ -8,7 +8,7 @@ module JurnalApi
         response
       end
 
-      def product_create(id, params = {})
+      def product_create(params = {})
         response = post('products', params)
         response
       end
