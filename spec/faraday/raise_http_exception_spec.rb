@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
+require 'active_support'
+require 'active_support/core_ext/object/blank'
+require 'active_support/core_ext/object/to_query'
 
 RSpec.describe 'FaradayMiddleware::RaiseHttpException via JurnalApi::Client' do
   let(:client) { JurnalApi::Client.new(access_token: 'test-token') }
