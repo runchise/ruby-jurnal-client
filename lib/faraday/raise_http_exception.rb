@@ -11,6 +11,8 @@ module FaradayMiddleware
           raise JurnalApi::BadRequest, error_message_400(response)
         when 404
           raise JurnalApi::NotFound, error_message_400(response)
+        when 422
+          raise JurnalApi::UnprocessableEntity.new(error_message_400(response), error_body(response))
         when 429
           raise JurnalApi::TooManyRequests, error_message_400(response)
         when 500
@@ -42,6 +44,16 @@ module FaradayMiddleware
 
     def error_message_500(response, body=nil)
       "#{response[:method].to_s.upcase} #{response[:url].to_s}: #{[response[:status].to_s + ':', body].compact.join(' ')}"
+    end
+
+    def error_body(response)
+      body = response[:body]
+      return body if body.is_a?(Hash)
+      return {} if body.nil? || (body.respond_to?(:empty?) && body.empty?)
+
+      JSON.parse(body)
+    rescue JSON::ParserError
+      { 'raw' => body.to_s }
     end
   end
 end
